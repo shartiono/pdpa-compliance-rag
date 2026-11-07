@@ -1,0 +1,12 @@
+question,type,correct_file,correct_page,also_correct
+When must an organisation notify the PDPC about a notifiable data breach?,normal,data_breach_guide.pdf,25;38,key_concepts.pdf:143
+How quickly should an organisation assess a suspected data breach?,normal,data_breach_guide.pdf,22;38,
+When must affected individuals be told about a data breach?,normal,data_breach_guide.pdf,19;25,key_concepts.pdf:143
+Can a shop collect a customer's full NRIC number for a lucky draw?,normal,nric_guidelines.pdf,12,
+When is an organisation allowed to collect a person's NRIC number?,normal,nric_guidelines.pdf,6,
+What counts as personal data under the PDPA?,normal,key_concepts.pdf,12,
+Does an organisation need to appoint a Data Protection Officer?,normal,key_concepts.pdf,151,
+What is deemed consent under the PDPA?,normal,key_concepts.pdf,42,
+What is the maximum financial penalty the PDPC can impose?,normal,pdpa_act.pdf,65;66,
+What is the GST rate in Singapore?,off-topic,,,
+Who won the football World Cup in 2022?,off-topic,,,

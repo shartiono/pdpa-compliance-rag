@@ -1,0 +1,12 @@
+# The database is rebuilt from the documents
+pdpa_db/
+
+# PDFs are downloaded from official sources, not stored in the repo
+documents/
+
+# API keys and secrets (later)
+.env
+
+# Jupyter and Python clutter
+.ipynb_checkpoints/
+__pycache__/
