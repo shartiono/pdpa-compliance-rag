@@ -11,15 +11,23 @@ A question-answering assistant for Singapore's **Personal Data Protection Act (P
 
 | Test | Result |
 |---|---|
-| Correct page retrieved (top 4 chunks) | **X of Y questions (Z%)** |
-| Off-topic questions correctly refused | **X of Y** |
+| Correct page retrieved (top 4 chunks) | **9 of 9 questions (100%)** |
+| Off-topic questions correctly refused | **2 of 2** |
 
-Measured with `pdpa_score.ipynb` on hand-checked test questions in `test_questions.csv`.
+Measured with `pdpa_score.ipynb` on a hand-checked answer key in `test_questions.csv` (607 chunks from 4 documents, 345 pages).
+
+**What testing revealed**
+
+- **Meaning-based search works:** a question about a "data leak" retrieved the Data Breach guide, although the documents use the word "breach".
+- **The answer key needed a fix:** two first-run "misses" retrieved Key Concepts p.143, which also states the breach notification timeframes. The answer key now accepts a correct page from either document (`also_correct` column).
+- **Retrieval correct, generation wrong:** asked when to notify the PDPC, the model answered "within 24 hours" although its retrieved source (Key Concepts p.143) says no later than **3 calendar days**. The small local model can misstate numbers even with the right source, so answers should be checked against the cited page.
+- **Off-topic questions score much lower:** about 0.44–0.53 similarity, versus about 0.86–0.88 for PDPA questions.
+- **Data quality:** the Act, saved from the web page as PDF, lost spaces between some words.
 
 ## How it works
 
 ```
-5 PDPC documents (PDF)
+4 official PDPA documents (PDF)
    → split into ~300-word chunks with page numbers
    → each chunk turned into an embedding (nomic-embed-text)
    → saved as a NumPy matrix (normalised vectors)
@@ -49,7 +57,7 @@ Question
 | Advisory Guidelines on Key Concepts | [PDPC](https://www.pdpc.gov.sg) |
 | Guide on Managing and Notifying Data Breaches | [PDPC](https://www.pdpc.gov.sg) |
 | Advisory Guidelines for NRIC Numbers | [PDPC](https://www.pdpc.gov.sg) |
-| Advisory Guidelines for Selected Topics | [PDPC](https://www.pdpc.gov.sg) |
+| Advisory Guidelines for Selected Topics (planned) | [PDPC](https://www.pdpc.gov.sg) |
 
 The PDFs are not included in this repository; download them from the official links (file names in `sources.csv`).
 
@@ -63,11 +71,14 @@ The PDFs are not included in this repository; download them from the official li
 ## Limitations
 
 - General information only, **not legal advice**.
-- Covers 5 documents; questions outside them are refused.
-- Small local model: answers can be less polished than large online models.
+- Covers 4 documents; questions outside them are refused.
+- Small local model: it can misstate details such as deadlines, even with the right source.
+- Small test set (9 + 2 questions).
 
 ## Next steps
 
+- Fix the generation error: a prompt rule to copy numbers exactly, or a larger model; then score answer accuracy, not only retrieval
+- Add the Selected Topics guidelines
 - Web interface with Streamlit and a public demo link
 - Larger test set (30 questions) and chunk-size experiments
 - Chunking by legal section for more precise citations
