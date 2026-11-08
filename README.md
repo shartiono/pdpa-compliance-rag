@@ -4,6 +4,17 @@ A question-answering assistant for Singapore's **Personal Data Protection Act (P
 
 > General chatbots answer PDPA questions from memory, without sources. This assistant retrieves the relevant paragraphs from official guidance first, so every answer can be checked.
 
+## Objective
+
+To build and evaluate a **retrieval-augmented generation (RAG)** assistant for compliance questions, using Singapore's PDPA as the example domain. The goal is to show how an organisation could give staff quick, **sourced** answers from approved regulatory documents, and to measure honestly how well it works:
+
+- answer only from official, approved documents
+- cite the exact document and page, so every answer can be verified
+- refuse questions the documents don't cover, instead of guessing
+- measure retrieval and answer quality on a hand-checked test set, and test whether changes actually help
+
+The same approach applies to any rule-heavy domain: HR policies, financial regulations (e.g. MAS notices), workplace safety, or a company's internal procedures.
+
 ![Screenshot](screenshot.png)
 
 ## Sample answers
@@ -33,6 +44,30 @@ Real outputs from the notebooks, showing the three behaviours that matter.
 > **A:** "...within 72 hours of determining that the breach is notifiable." *(an earlier run said "24 hours")*
 >
 > **Correct:** as soon as practicable, and **no later than 3 calendar days** after determining the breach is notifiable (Data Breach Guide p.25; Key Concepts p.143). Both pages were retrieved; the small model misstated the figure. This is why every answer shows its sources.
+
+## Why RAG, instead of a search engine or a general AI chatbot?
+
+For one person asking an occasional question, a search engine or a general AI assistant (ChatGPT, Claude, Gemini) with an uploaded PDF works well. RAG matters when an **organisation** needs answers it can control, share and trust.
+
+| | Search engine | General AI chatbot | This RAG assistant |
+|---|---|---|---|
+| **Gives a direct answer** | No, a list of links to read | Yes | Yes |
+| **Sources it uses** | Mixed: official pages, forums, ads, other countries' rules | Training data, plus whatever files a user uploads or pages it searches | Only the approved document set |
+| **Same sources for every user** | No | No, depends on what each user uploads or enables | Yes, documents are loaded once, centrally |
+| **Exact citation (document + page)** | The link only | Varies | On every answer |
+| **When the documents don't cover it** | Shows something anyway | May answer from general knowledge | Refuses (in code, below a similarity threshold) |
+| **Accuracy measured** | No | Not for your specific documents | Yes, on a hand-checked test set |
+| **Keeping up to date** | Depends on the websites | Depends on the model's training date or the user re-uploading | Replace the document and rebuild the index |
+| **Confidential internal documents** | Not possible | Must be uploaded to an outside service | Can run fully locally (this project uses Ollama) |
+
+**Where an organisation benefits most**
+
+- **Consistency:** every staff member gets answers from the same approved, current versions of the rules.
+- **Verifiability:** compliance and audit teams can check each answer against the cited page.
+- **Combining public and internal rules:** a company could add its own data-handling policy next to the PDPA, which it may not be allowed to upload to a public chatbot.
+- **Control:** the organisation decides the documents, the refusal behaviour, the disclaimer, and where the system runs.
+
+**Honest trade-off:** a large online chatbot usually writes more fluent answers than the small local model used here; this project's answer accuracy is about 72%. The value of RAG is not a smarter model but **controlled sources, citations and measurable behaviour**, and the retrieval pipeline works the same with a larger model.
 
 ## Results
 
