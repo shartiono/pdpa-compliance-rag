@@ -6,6 +6,34 @@ A question-answering assistant for Singapore's **Personal Data Protection Act (P
 
 ![Screenshot](screenshot.png)
 
+## Sample answers
+
+Real outputs from the notebooks, showing the three behaviours that matter.
+
+**1. A correct answer with citations**
+
+> **Q:** Can a shop collect a customer's full NRIC number for a lucky draw?
+>
+> **A:** No, a shop cannot collect a customer's full NRIC number for a lucky draw. [1] [4] According to the guidelines, a shop should not collect the NRIC number of customers for purposes such as lucky draws, unless it is necessary to accurately establish or verify the identity of the individual to a high degree of fidelity. The shop should consider using alternative identifiers, such as the customer's mobile number, email address, or partial NRIC number (up to the last 3 numerical digits and checksum).
+>
+> **Sources:** [1] NRIC Guidelines, p.12 (similarity 0.839) · [4] NRIC Guidelines, p.13 (0.700)
+
+**2. An off-topic question, before and after the similarity threshold**
+
+> **Q:** What is Singapore famous for?
+>
+> **Before:** "Singapore is famous for being a digital economy hub, with a strong focus on innovation and technology. [1] I don't have information on that in my PDPA documents." *(an unsupported half-answer, then a refusal)*
+>
+> **After:** "I don't have information on that in my PDPA documents." *(refused in code: the best match scored 0.617, below the 0.69 threshold, so the AI was never asked)*
+
+**3. A known error: right source, wrong figure**
+
+> **Q:** When must an organisation notify the PDPC about a notifiable data breach?
+>
+> **A:** "...within 72 hours of determining that the breach is notifiable." *(an earlier run said "24 hours")*
+>
+> **Correct:** as soon as practicable, and **no later than 3 calendar days** after determining the breach is notifiable (Data Breach Guide p.25; Key Concepts p.143). Both pages were retrieved; the small model misstated the figure. This is why every answer shows its sources.
+
 ## Results
 
 30 hand-checked test questions (25 PDPA + 5 off-topic), comparing the original version with the version after two changes:
@@ -79,6 +107,20 @@ The PDFs are not included in this repository; download them from the official li
 2. Put the PDFs in a `documents/` folder with the names listed in `sources.csv`.
 3. Open `pdpa_week1.ipynb` in Jupyter and run all cells.
 4. To measure accuracy, run `pdpa_score.ipynb` (set `IMPROVED` to `False` or `True` to compare versions).
+
+## Project files
+
+| File | What it is |
+|---|---|
+| `pdpa_week1.ipynb` | The assistant: loads the PDFs, chunks, embeds, retrieves and answers, step by step with explanations |
+| `pdpa_score.ipynb` | The evaluation: retrieval, off-topic and answer-accuracy tests, plus the similarity report |
+| `test_questions.csv` | The hand-checked answer key: 30 questions with correct pages and expected key facts |
+| `test_results_baseline.csv` | Results for every question, original version |
+| `test_results_improved.csv` | Results for every question, after the changes |
+| `sources.csv` | Titles, official links and download dates of the documents |
+| `requirements.txt` | Python libraries needed |
+
+**Tech stack:** Python, NumPy, pypdf, Ollama (`nomic-embed-text` embeddings, `llama3.2` answers), Jupyter.
 
 ## Limitations
 
