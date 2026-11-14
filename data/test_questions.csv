@@ -1,0 +1,31 @@
+question,type,correct_file,correct_page,also_correct,must_contain
+When must an organisation notify the PDPC about a notifiable data breach?,normal,data_breach_guide.pdf,25;38,key_concepts.pdf:143,3 calendar days|three (3) calendar days|three calendar days|3 days|three days
+How quickly should an organisation assess a suspected data breach?,normal,data_breach_guide.pdf,22;38,,30 calendar days|30 days|thirty days|thirty (30)
+When must affected individuals be told about a data breach?,normal,data_breach_guide.pdf,19;25,key_concepts.pdf:143,same time|after notifying|after it notifies|after the commission|after the pdpc
+Can a shop collect a customer's full NRIC number for a lucky draw?,normal,nric_guidelines.pdf,12,,partial
+When is an organisation allowed to collect a person's NRIC number?,normal,nric_guidelines.pdf,6,,required under|law|verify the identity|establish or verify
+What counts as personal data under the PDPA?,normal,key_concepts.pdf,12,,identified|identify
+Does an organisation need to appoint a Data Protection Officer?,normal,key_concepts.pdf,151,,designate|one or more individual|yes|section 11
+What is deemed consent under the PDPA?,normal,key_concepts.pdf,42,,conduct|contractual|notification
+What is the maximum financial penalty the PDPC can impose?,normal,pdpa_act.pdf,65;66,,1 million|10%|10 per cent|one million
+How many affected individuals make a data breach of significant scale?,normal,data_breach_guide.pdf,24,key_concepts.pdf:142,500
+What are the four key steps for responding to a data breach?,normal,data_breach_guide.pdf,13;5;34,,evaluate
+Should an organisation keep a customer's physical NRIC card?,normal,nric_guidelines.pdf,10,,not retain|should not|generally not|unless
+From what date did the PDPC start applying the NRIC guidelines?,normal,nric_guidelines.pdf,15,,1 september 2019|september 2019
+Does the PDPA apply to business contact information?,normal,key_concepts.pdf,17;18,pdpa_act.pdf:8,not apply|does not|do not|excluded
+Can a customer withdraw their consent to an organisation using their personal data?,normal,key_concepts.pdf,54;55,,reasonable notice|yes
+How long does an organisation have to respond to a personal data access request?,normal,key_concepts.pdf,95,,30 days|as soon as reasonably possible
+When must an organisation stop keeping personal data?,normal,key_concepts.pdf,117,key_concepts.pdf:35;key_concepts.pdf:119,no longer|longer necessary|longer being served
+Does the PDPA protect the personal data of people who have died?,normal,key_concepts.pdf,17;19,key_concepts.pdf:11,10 years|ten years
+What is the legitimate interests exception?,normal,key_concepts.pdf,60;61,,outweigh|adverse effect
+What must an organisation tell individuals before collecting their personal data?,normal,key_concepts.pdf,82,key_concepts.pdf:34,purpose
+Where should CCTV notices be placed?,normal,selected_topics.pdf,36;37,,aware|awareness|locale|entrance|visible
+Is anonymised data covered by the PDPA?,normal,selected_topics.pdf,10;7,,not personal data|not governed|not covered|does not apply|not apply
+Does an employer need employees' consent to collect personal data for managing their employment?,normal,selected_topics.pdf,49,selected_topics.pdf:36,not require|no consent|without consent|do not need|does not need|not need|not required
+Does the PDPA apply to an individual acting in a personal or domestic capacity?,normal,pdpa_act.pdf,13,key_concepts.pdf:22;key_concepts.pdf:23,not apply|does not|do not|no obligation|not impose
+What is the Do Not Call Register?,normal,pdpa_act.pdf,42,pdpa_act.pdf:7;key_concepts.pdf:8;key_concepts.pdf:9,telephone|text message|fax
+What is the GST rate in Singapore?,off-topic,,,,
+Who won the football World Cup in 2022?,off-topic,,,,
+How do I apply for an HDB flat?,off-topic,,,,
+What is the CPF contribution rate for employees?,off-topic,,,,
+What is the capital of Australia?,off-topic,,,,

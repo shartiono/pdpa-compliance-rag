@@ -2,7 +2,13 @@
 
 A retrieval-augmented generation (RAG) assistant that answers questions about Singapore's **Personal Data Protection Act (PDPA)** using only official PDPC documents, and cites the document and page for every answer.
 
-![Screenshot](screenshot.png)
+![Screenshot](assets/screenshot.png)
+
+## Why this matters
+
+Personal information shared or exposed online can be misused. Singapore's new Online Safety Commission received more than 500 reports of online harm in its first two months of operation (29 June to 31 August 2026), and **doxxing** (publishing someone's personal details to harass them) was the most reported harm, at 44% of eligible reports; the youngest victim was seven years old ([Malay Mail, citing CNA, 22 Sep 2026](https://www.malaymail.com/news/singapore/2026/09/22/singapore-online-safety-commission-gets-500-plus-reports-in-first-two-months-youngest-victim-seven/236090)). The PDPC also publishes guidance urging individuals to [share their personal data with care](https://www.pdpc.gov.sg/individuals/resources-tips/share-your-personal-data-with-care).
+
+Doxxing itself falls under Singapore's online safety laws, but it shows why it matters to know what personal data may be collected, shared and protected. The PDPA sets those rules for organisations, yet its guidance runs to hundreds of pages. This project explores how AI can make those rules quicker to look up, while keeping every answer traceable to its official source.
 
 ## Why RAG?
 
@@ -27,7 +33,7 @@ The same approach works for any rule-heavy domain, such as HR policies, MAS regu
 | Advisory Guidelines for NRIC and other National Identification Numbers | 15 | [PDPC](https://www.pdpc.gov.sg/guidelines-and-consultation/2020/02/advisory-guidelines-on-the-personal-data-protection-act-for-nric-and-other-national-identification-numbers) |
 | Advisory Guidelines on the PDPA for Selected Topics | 62 | [PDPC](https://www.pdpc.gov.sg/organisations/regulations-decisions/regulatory-guidance/advisory-guidelines-on-the-personal-data-protection-act-for-selected-topics) |
 
-The PDFs are not included in this repository; file names are listed in `sources.csv`.
+The PDFs are not included in this repository; file names and links are listed in `data/sources.csv`.
 
 ## How it works
 
@@ -71,8 +77,27 @@ Tested on **30 hand-checked questions** (25 PDPA + 5 off-topic):
 ## How to run it
 
 1. Install [Ollama](https://ollama.com) and run `ollama pull nomic-embed-text` and `ollama pull llama3.2`.
-2. Put the PDFs in a `documents/` folder using the names in `sources.csv`.
-3. Run `pdpa_assistant.ipynb` to build the index and ask questions, then `pdpa_score.ipynb` to reproduce the results.
+2. Download the PDFs from the links above into a `documents/` folder, using the file names in `data/sources.csv`.
+3. Run `notebooks/pdpa_assistant.ipynb` to build the index and ask questions, then `notebooks/pdpa_score.ipynb` to reproduce the results.
+
+## Project structure
+
+```
+pdpa-compliance-rag/
+├── notebooks/
+│   ├── pdpa_assistant.ipynb   # the assistant: load, chunk, embed, retrieve, answer
+│   └── pdpa_score.ipynb       # evaluation: retrieval, refusals, answer accuracy
+├── data/
+│   ├── sources.csv            # official document titles, links, download dates
+│   └── test_questions.csv     # hand-checked answer key (30 questions)
+├── results/
+│   ├── test_results_baseline.csv
+│   └── test_results_improved.csv
+├── assets/
+│   └── screenshot.png
+├── requirements.txt
+└── README.md
+```
 
 ## Limitations
 
@@ -86,4 +111,10 @@ Tested on **30 hand-checked questions** (25 PDPA + 5 off-topic):
 2. **Better retrieval:** add `nomic-embed-text`'s query/document prefixes and keyword search.
 3. **Web app:** a Streamlit interface with a public demo link.
 
-*Personal learning project; not affiliated with the PDPC.*
+## Disclaimer
+
+- This is a **personal learning and portfolio project**, built only from **publicly available** official documents and news reports, cited above.
+- It is **not legal advice** and must not be relied on for compliance decisions. Always refer to the official sources or seek professional legal advice.
+- It is **not affiliated with, or endorsed by,** the Personal Data Protection Commission (PDPC) or any Singapore Government agency.
+- **No personal data** was collected or used. Test questions use general, fictional scenarios.
+- The source documents remain the property of their publishers and are not redistributed here.
